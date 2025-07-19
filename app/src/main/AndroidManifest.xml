@@ -2,7 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- 權限說明：
+         - READ_EXTERNAL_STORAGE: Android 10 以下版本讀取外部儲存
+         - MANAGE_EXTERNAL_STORAGE: Android 11+ 管理外部儲存（可選）
+         - SAF 不需額外權限，但建議用於 Android 11+ -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" 
+        android:maxSdkVersion="29" />
+    
     <application
+        android:name=".PdfReviewerApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,12 +24,39 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MyApplication">
+            android:theme="@style/Theme.MyApplication"
+            android:launchMode="singleTop">
+            
+            <!-- 主程式啟動 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            
+            <!-- PDF 檔案開啟支援 -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:mimeType="application/pdf" />
+            </intent-filter>
+            
+            <!-- 支援從檔案管理器開啟 .pdf 檔案 -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="file" 
+                      android:pathPattern=".*\\.pdf" />
+            </intent-filter>
+            
+            <!-- 支援從內容提供者開啟 PDF -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="content" 
+                      android:mimeType="application/pdf" />
+            </intent-filter>
+            
         </activity>
     </application>
 

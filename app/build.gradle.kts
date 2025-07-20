@@ -96,6 +96,11 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
     implementation("androidx.compose.material:material-icons-extended:1.6.8")
     testImplementation(libs.junit)
+    
+    // Hilt Testing
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.51")
+    kaptAndroidTest("com.google.dagger:hilt-compiler:2.51")
+    
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

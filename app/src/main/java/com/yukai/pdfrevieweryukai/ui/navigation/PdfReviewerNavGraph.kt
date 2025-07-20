@@ -27,13 +27,11 @@ fun PdfReviewerNavGraph(
         }
         
         composable(Screen.PdfViewer.route) { backStackEntry ->
-
-
             val encodedUri = backStackEntry.arguments?.getString("uri") ?: ""
-            Log.d("PdfViewerViewModel", "encodedUri encodedUri: ${encodedUri}")
             PdfViewerScreen(
                 uri = encodedUri,
                 onNavigateBack = {
+//                    Log.d("PdfViewerViewModel", "onNavigateBack")
                     navController.popBackStack()
                 }
             )

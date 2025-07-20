@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -101,6 +102,9 @@ fun HomeScreen(
         
         // 選擇檔案按鈕
         Button(
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = colorResource(id = R.color.blue),
+            ),
             onClick = { viewModel.onEvent(HomeUiEvent.SelectPdfFile) },
             modifier = Modifier
                 .fillMaxWidth()
@@ -116,11 +120,13 @@ fun HomeScreen(
                 Icon(
                     imageVector = Icons.Default.FileOpen,
                     contentDescription = null,
-                    modifier = Modifier.padding(end = 8.dp)
+                    modifier = Modifier.padding(end = 8.dp),
+                    tint = Color.White
                 )
                 Text(
                     text = stringResource(R.string.select_pdf),
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    color = Color.White
                 )
             }
         }

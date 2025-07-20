@@ -17,6 +17,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.rememberNavController
 import com.yukai.pdfrevieweryukai.ui.navigation.PdfReviewerNavGraph
@@ -32,12 +33,11 @@ class MainActivity : ComponentActivity() {
         window.statusBarColor = Color.BLUE
         setContent {
             MyApplicationTheme {
-                window.statusBarColor = Color.BLUE
                 Surface(
                     modifier = Modifier
                         .fillMaxSize()
                         .systemBarsPadding(),
-                    color = MaterialTheme.colors.background
+                    color = colorResource(id = R.color.gray_lighter)
                 ) {
                     val navController = rememberNavController()
                     
